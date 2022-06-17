@@ -10,7 +10,7 @@ from opts import parse_opts
 
 def main(cnn_name, model_depth, n_classes, in_channels, sample_size):
  
-    # simple CNN 
+    # simple CNN (= v3)
     if cnn_name == 'cnn':
         """
         3D simple cnn model
@@ -18,7 +18,7 @@ def main(cnn_name, model_depth, n_classes, in_channels, sample_size):
         print(cnn_name)
         model = cnn3d()
     
-    # C3D
+    # C3D (very big and inefficient)
     elif cnn_name == 'C3D':
         """
         "Learning spatiotemporal features with 3d convolutional networks." 
@@ -29,7 +29,7 @@ def main(cnn_name, model_depth, n_classes, in_channels, sample_size):
             num_classes=n_classes,
             in_channels=1)
 
-    # ResNet
+    # ResNet (ok)
     elif cnn_name == 'resnet':
         """
         3D resnet
@@ -45,7 +45,7 @@ def main(cnn_name, model_depth, n_classes, in_channels, sample_size):
             no_max_pool=False,
             widen_factor=1.0)
     
-    # ResNetV2
+    # ResNetV2 (ok)
     elif cnn_name == 'ResNetV2':
         """
         3D resnet
@@ -61,7 +61,7 @@ def main(cnn_name, model_depth, n_classes, in_channels, sample_size):
             no_max_pool=False,
             widen_factor=1.0)
 
-    # ResNeXtV2
+    # ResNeXt (ok)
     elif cnn_name == 'ResNeXt':
         """
         WideResNet
@@ -74,7 +74,7 @@ def main(cnn_name, model_depth, n_classes, in_channels, sample_size):
             sample_size=sample_size,
             sample_duration=16)
     
-    # ResNeXtV2
+    # ResNeXtV2 (ok)
     elif cnn_name == 'ResNeXtV2':
         """
         WideResNet
