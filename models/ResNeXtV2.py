@@ -25,12 +25,12 @@ def get_inplanes():
 class ResNeXtBottleneck(Bottleneck):
     expansion = 2
 
-    def __init__(self, inplanes, planes, cardinality, stride=1,
+    def __init__(self, in_planes, planes, cardinality, stride=1,
                  downsample=None):
-        super().__init__(inplanes, planes, stride, downsample)
+        super().__init__(in_planes, planes, stride, downsample)
 
         mid_planes = cardinality * planes // 32
-        self.conv1 = conv1x1x1(inplanes, mid_planes)
+        self.conv1 = conv1x1x1(in_planes, mid_planes)
         self.bn1 = nn.BatchNorm3d(mid_planes)
         self.conv2 = nn.Conv3d(mid_planes,
                                mid_planes,
@@ -68,16 +68,12 @@ def generate_model(model_depth, **kwargs):
     assert model_depth in [50, 101, 152, 200]
 
     if model_depth == 50:
-        model = ResNeXt(ResNeXtBottleneck, [3, 4, 6, 3],
-                        **kwargs)
+        model = ResNeXt(ResNeXtBottleneck, [3, 4, 6, 3], get_inplanes(), **kwargs)
     elif model_depth == 101:
-        model = ResNeXt(ResNeXtBottleneck, [3, 4, 23, 3],
-                        **kwargs)
+        model = ResNeXt(ResNeXtBottleneck, [3, 4, 23, 3], get_inplanes(), **kwargs)
     elif model_depth == 152:
-        model = ResNeXt(ResNeXtBottleneck, [3, 8, 36, 3],
-                        **kwargs)
+        model = ResNeXt(ResNeXtBottleneck, [3, 8, 36, 3], get_inplanes(), **kwargs)
     elif model_depth == 200:
-        model = ResNeXt(ResNeXtBottleneck, [3, 24, 36, 3],
-                        **kwargs)
+        model = ResNeXt(ResNeXtBottleneck, [3, 24, 36, 3], get_inplanes(), **kwargs)
 
     return model

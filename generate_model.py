@@ -18,7 +18,7 @@ def main(cnn_name, model_depth, n_classes, in_channels, sample_size):
         print(cnn_name)
         model = cnn3d()
     
-    # C3D (very big and inefficient)
+    # C3D
     elif cnn_name == 'C3D':
         """
         "Learning spatiotemporal features with 3d convolutional networks." 
@@ -29,7 +29,7 @@ def main(cnn_name, model_depth, n_classes, in_channels, sample_size):
             num_classes=n_classes,
             in_channels=1)
 
-    # ResNet (ok)
+    # ResNet
     elif cnn_name == 'resnet':
         """
         3D resnet
@@ -45,7 +45,7 @@ def main(cnn_name, model_depth, n_classes, in_channels, sample_size):
             no_max_pool=False,
             widen_factor=1.0)
     
-    # ResNetV2 (ok)
+    # ResNetV2
     elif cnn_name == 'ResNetV2':
         """
         3D resnet
@@ -61,7 +61,7 @@ def main(cnn_name, model_depth, n_classes, in_channels, sample_size):
             no_max_pool=False,
             widen_factor=1.0)
 
-    # ResNeXt (ok)
+    # ResNeXt
     elif cnn_name == 'ResNeXt':
         """
         WideResNet
@@ -74,7 +74,7 @@ def main(cnn_name, model_depth, n_classes, in_channels, sample_size):
             sample_size=sample_size,
             sample_duration=16)
     
-    # ResNeXtV2 (ok)
+    # ResNeXtV2
     elif cnn_name == 'ResNeXtV2':
         """
         WideResNet
@@ -181,7 +181,7 @@ def main(cnn_name, model_depth, n_classes, in_channels, sample_size):
         """
         EfficientNet
         """
-        model = EfficientNet3D.from_name(
+        model = EfficientNet.EfficientNet3D.from_name(
             'efficientnet-b4', 
             override_params={'num_classes': n_classes}, 
             in_channels=in_channels)
